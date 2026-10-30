@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LGU Bato, Leyte | Official Website Of Government Of Bato</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" type="image/png" href="assets/images/seal2.png">
+
+<style>
+/* ===============================
+   NAVBAR
+================================ */
+.main-navbar {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background-color: #1b2a4e;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    position: relative;
+    z-index: 10;
+}
+
+.main-navbar i {
+    margin-right: 6px;
+    font-size: 0.9rem;
+}
+
+.main-navbar a,
+.main-navbar .dropbtn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 16px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* LEFT → RIGHT UNDERLINE (original animation) */
+.main-navbar a::after,
+.main-navbar .dropbtn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+}
+
+.main-navbar a:hover::after,
+.main-navbar a.active::after,
+.main-navbar .dropbtn:hover::after {
+    transform: scaleX(1);
+}
+
+/* DIVIDERS */
+.main-navbar > a:not(:last-child),
+.main-navbar > .dropdown:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ===============================
+   DROPDOWN
+================================ */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1b2a4e;
+    min-width: 220px;
+    display: none;
+    flex-direction: column;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 9999;
+}
+
+.dropdown-menu a {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    border-right: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #002f6c;
+}
+
+/* Hover on desktop */
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+/* ===============================
+   MOBILE STYLES
+================================ */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+@media (max-width: 992px) { /* tablets and below */
+    .header-container.new-header-layout {
+        flex-direction: column; /* stack logo and text */
+        align-items: center;    /* center everything horizontally */
+        text-align: center;     /* center text inside header-text */
+    }
+
+    .header-text {
+        margin: 10px 0 0 0;     /* spacing from logo */
+    }
+
+    .header-logo {
+        max-width: 120px;       /* adjust logo size on smaller screens */
+        height: auto;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-navbar a,
+    .main-navbar .dropdown {
+        display: none;
+        width: 100%;
+    }
+
+    .main-navbar.active a,
+    .main-navbar.active .dropdown {
+        display: block;
+    }
+
+    .dropdown-menu {
+        position: static;
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        transition: max-height 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-menu {
+        max-height: 500px; /* adjust if many links */
+    }
+
+        .header-text {
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Optional: add spacing between elements */
+    .header-text .country,
+    .header-text .unit,
+    .header-text h1,
+    .header-text .pst-time {
+        display: block;
+        margin: 4px 0; /* adjust spacing as needed */
+    }
+
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="header-container new-header-layout">
+        <img src="assets/images/seal2.png" alt="LGU Bato Logo" class="header-logo">
+        <div class="header-text">
+            <span class="country">Republic of the Philippines</span>
+            <h1>LGU BATO, LEYTE</h1>
+            <span class="unit">Local Government Unit of Bato, Leyte</span>
+            <div class="pst-time" id="pstTime"></div>
+        </div>
+    </div>
+</header>
+
+
+<nav class="main-navbar">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a href="https://www.gov.ph" target="_blank">
+        <i class="fa-solid fa-landmark"></i> GOVPH
+    </a>
+
+    <a href="index.html" class="active">
+        <i class="fa-solid fa-house"></i> HOME
+    </a>
+
+    <!-- GOVERNMENT DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-building-columns"></i> GOVERNMENT &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="executive.html" class="">
+                <i class="fa-solid fa-user-tie"></i> Executive Department<i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="legislative.html" class="">
+                <i class="fa-solid fa-scale-balanced"></i> Legislative Department<i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="barangay.html" class="">
+                <i class="fa-solid fa-people-group"></i> Barangay
+            </a>
+        </div>
+    </div>
+
+    <!-- TOURISM DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-umbrella-beach"></i> TOURISM &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="batobalani.html" class="">
+                <i class="fa-solid fa-umbrella-beach"></i> Batobalani
+            </a>
+        </div>
+    </div>
+
+    <!-- TRANSPARENCY DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-file-lines"></i> TRANSPARENCY &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="full-disclosure.html" class="">
+                <i class="fa-solid fa-shield-halved"></i> Full Disclosure Policy
+            </a>
+            <a href="executive-orders.html" class="">
+                <i class="fa-solid fa-file-circle-check"></i> Executive Order
+            </a>
+            <a href="ordinance.html" class="">
+                <i class="fa-solid fa-scroll"></i> Ordinance
+            </a>
+            <a href="resolutions.html" class="">
+                <i class="fa-solid fa-file-signature"></i> Resolutions
+            </a>
+            <a href="citizens-charter.html" class="">
+                <i class="fa-solid fa-book-open"></i> Citizens Charter
+            </a>
+            <a href="transparency-seal.html" class="">
+                <i class="fa-solid fa-shield-halved"></i> Transparency Seal
+            </a>
+        </div>
+    </div>
+
+    <!-- BAC DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-gavel"></i> BAC &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="invite-bid.html" class="">
+                <i class="fa-solid fa-envelope-open-text"></i> Invitation to BID
+            </a>
+            <a href="documentation.html" class="">
+                <i class="fa-solid fa-file-contract"></i> Procurement Documentation<i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="reports.html" class="">
+                <i class="fa-solid fa-chart-line"></i> Procurement Reports<i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- OTHER LINKS DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-link"></i> OTHER LINKS &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="downloadable-forms.html" class="">
+                <i class="fa-solid fa-file-arrow-down"></i> Downloadable Forms
+            </a>
+            <a href="bpls.html" class="">
+                <i class="fa-solid fa-briefcase"></i> BPLS
+            </a>
+            <a href="bpas.html" class="">
+                <i class="fa-solid fa-building"></i> BPAS
+            </a>
+            <a href="gpmts.html" class="">
+                <i class="fa-solid fa-boxes-packing"></i> GPMTS
+            </a>
+        </div>
+    </div>
+
+    <a href="about.html" class="">
+        <i class="fa-solid fa-circle-info"></i> ABOUT US
+    </a>
+</nav>
+
+<main class="container">
+
+<script>
+// Philippine Standard Time
+function updatePST() {
+    const options = {
+        timeZone: 'Asia/Manila',
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    };
+    document.getElementById('pstTime').innerHTML =
+        'Philippine Standard Time: ' +
+        new Intl.DateTimeFormat('en-PH', options).format(new Date());
+}
+updatePST();
+setInterval(updatePST, 1000);
+
+// MOBILE MENU TOGGLE
+const menuToggle = document.getElementById('menuToggle');
+const navbar = document.querySelector('.main-navbar');
+menuToggle.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+});
+
+// MOBILE DROPDOWN TOGGLE WITH SLIDE & SINGLE OPEN
+const dropdowns = document.querySelectorAll('.dropdown');
+dropdowns.forEach(drop => {
+    const dropbtn = drop.querySelector('.dropbtn');
+    dropbtn.addEventListener('click', e => {
+        if(window.innerWidth <= 768){
+            e.preventDefault();
+            drop.classList.toggle('active');
+            dropdowns.forEach(other => {
+                if(other !== drop){
+                    other.classList.remove('active');
+                }
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
+<style>
+
+/* ===============================
+   SCROLL ANIMATION
+================================ */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease-out,
+                transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+.scroll-animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===============================
+   HERO SECTION
+================================ */
+.hero-section {
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* SLIDES */
+.hero-slides {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(65%);
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+/* HERO TEXT (KEEP YOUR ORIGINAL STYLE) */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.85);
+    color: #1b2a4e;
+    padding: 25px 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 90%;
+    transition: opacity 0.8s ease;
+}
+
+.hero-text.fade-out {
+    opacity: 0;
+}
+
+/* CORNER IMAGES */
+.hero-corner-image {
+    position: absolute;
+    bottom: 30px;
+    width: 350px;
+    height: 500px;
+    object-fit: cover;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+.hero-corner-image:hover {
+    transform: scale(1.05);
+}
+
+.hero-left { 
+    left: 0;
+    bottom: 0; /* stick to left corner */
+}
+.hero-right { 
+    right: 0; /* stick to right corner */
+    bottom: 0; /* stick to right corner */
+}
+
+/* ===============================
+   NEWS SECTION
+================================ */
+.news-section {
+    padding: 50px 20px;
+    background-color: white;
+    text-align: center;
+}
+.news-section h2 {
+    font-size: 2.5rem;
+    color: rgb(184, 0, 0);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.news-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+.news-card {
+    display: block;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #1b2a4e;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.news-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.news-content { padding: 20px; text-align: left; }
+.news-content h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.news-content p { font-size: 0.95rem; color: #555; line-height: 1.5; }
+.news-date { display: block; margin-top: 10px; font-size: 0.85rem; color: #888; }
+
+/* ===============================
+   EMERGENCY SECTION
+================================ */
+.emergency-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+.emergency-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.emergency-card:hover {
+    transform: translateY(-5px);
+    background: white;
+    color: red;
+}
+.emergency-image {
+    width: 180px;
+    margin: 20px;
+    border-radius: 12px;
+}
+.emergency-content {
+    padding: 25px 30px;
+    text-align: left;
+    max-width: 600px;
+}
+
+/* ===============================
+   BACK TO TOP
+================================ */
+#backToTop {
+    position: fixed;
+    top: -70px;
+    right: 20px;
+    z-index: 999;
+    background-color: #1b2a4e;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+#backToTop.show {
+    top: 20px;
+    opacity: 1;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 992px) {
+    .hero-corner-image {
+        width: 250px;
+        height: 350px;
+        bottom: 0;
+    }
+}
+
+/* ===============================
+   MOBILE VIEW FIX
+================================ */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 50svh; 
+    }
+
+    .hero-slide {
+        object-fit: cover;
+        object-position: center center;
+    }
+
+    .hero-text {
+        top: 45%;
+        padding: 12px 15px;
+        width: 90%;
+    }
+
+    .hero-text h2 {
+        font-size: 1.1rem; /* smaller heading */
+        line-height: 1.2;  /* tighter spacing */
+    }
+
+    .hero-text p {
+        font-size: 0.8rem; /* smaller paragraph */
+        line-height: 1.3;
+    }
+
+    .hero-corner-image {
+        width: 140px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 40svh; 
+    }
+
+    .hero-slide {
+        object-fit: cover;
+        object-position: center center;
+    }
+
+    .hero-text {
+        top: 50%;
+        padding: 10px;
+        width: 70%;
+        height: auto;
+        
+    }
+
+    .hero-text h2 {
+        font-size: 0.95rem; /* even smaller for very small screens */
+        line-height: 1.2;
+    }
+
+    .hero-text p {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+
+    .hero-corner-image {
+        width: 100px;
+        height: 130px;
+    }
+}
+
+</style>
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+
+    <div class="hero-slides">
+        <img src="assets/images/bato.jpg" class="hero-slide active">
+        <img src="assets/images/bato-hero.jpg" class="hero-slide">
+        <img src="assets/index/2.jpg" class="hero-slide">
+        <img src="assets/index/3.jpg" class="hero-slide">
+        <img src="assets/index/4.jpg" class="hero-slide">
+    </div>
+
+    <div class="hero-text">
+        <h2 class="mayor-title">Welcome to the Official Website of LGU Bato</h2>
+        <p class="mayor-title">
+            Serving the people with transparency, integrity, and dedication.
+            Stay updated with the latest news, events, and announcements from our municipality.
+        </p>
+    </div>
+
+    <img src="assets/mayor/mayor.png" class="hero-corner-image hero-left">
+    <img src="assets/vice/vice1.png" class="hero-corner-image hero-right">
+
+</section>
+
+<!-- NEWS SECTION -->
+<section class="news-section scroll-animate">
+    <h2 class="scroll-animate">News</h2>
+    <div class="news-cards">
+        <a href="https://www.facebook.com/photo?fbid=122225496356261967&set=a.122198165498261967" class="news-card scroll-animate">
+            <img src="assets/news/news1.jpg" alt="Community Health Program">
+            <div class="news-content">
+                <h3>Suspension of Classes</h3>
+                <p>Declaring the temporary suspension of classes at all levels and all school-related operations in both public and private schools within the Municipality of Bato, Leyte on February 5 and 6, 2026.</p>
+                <span class="news-date">Feb 6, 2026</span>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/photo?fbid=122224183826261967&set=a.122198165498261967" class="news-card scroll-animate">
+            <img src="assets/news/news2.jpg" alt="Road Rehabilitation Project">
+            <div class="news-content">
+                <h3>Grand Kasadya Night 2026</h3>
+                <p>Get ready, Bato! One epic night. One electrifying stage. 💥 Catch Kent Eublera, Kit, and Dwight Mativo as they light up the Baywalk with music, energy, and pure kasadya! 📅 January 25, 2026 | 8:00 PM onwards 📍 Bato Baywalk Grounds.</p>
+                <span class="news-date">Jan 24, 2026</span>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/photo?fbid=122223842774261967&set=a.122198165498261967" class="news-card scroll-animate">
+            <img src="assets/news/news3.jpg" alt="Town Festival Schedule">
+            <div class="news-content">
+                <h3>Grand Champion – Batobalani Barangay Idol 2026</h3>
+                <p>Your voice, passion, and dedication brought pride to Barangay Tinago, Bato, Leyte. This victory is truly well-deserved! 🌟🎤 Padayon sa pag-lambo, Idol! The whole Bato is proud of you! 💙👏</p>
+                <span class="news-date">Jan 20, 2026</span>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/photo?fbid=122223778976261967&set=a.122198165498261967" class="news-card scroll-animate">
+            <img src="assets/news/news4.jpg" alt="Town Festival Schedule">
+            <div class="news-content">
+                <h3>🔥🎶 VESPER JAMMING! 🎶🔥</h3>
+                <p>🎸 1st BATOBALANI BATTLE OF THE BANDS 🎸 with APIKISESH 📅 January 24, 2026 ⏰ 7:00 PM 📍 Bato Baywalk Grounds. Get ready for an electrifying night of music, talent, and jamming vibes as bands battle it out on stage!</p>
+                <span class="news-date">Jan 20, 2026</span>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/photo/?fbid=122223593882261967&set=pcb.122223594350261967" class="news-card scroll-animate">
+            <img src="assets/news/news5.jpg" alt="Town Festival Schedule">
+            <div class="news-content">
+                <h3>🎤✨ Who will be the next Batobalani Barangay Idol? ✨🎤</h3>
+                <p>The stage is set and the voices are ready! Witness the BATOBALANI BARANGAY IDOL – GRAND FINALS and cheer for your favorite finalists as they battle it out for the title! 📅 January 20, 2026 ⏰ 7:30 PM 📍 Bato Baywalk Grounds.</p>
+                <span class="news-date">Jan 18, 2026</span>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/photo/?fbid=122223331736261967&set=a.122198165498261967" class="news-card scroll-animate">
+            <img src="assets/news/news6.jpg" alt="Town Festival Schedule">
+            <div class="news-content">
+                <h3>2026 Bato Town Fiesta | Grand Opening Salvo 🎉</h3>
+                <p>Join us this January 16, 2026 (Friday) for the Grand Opening Salvo of the Bato Town Fiesta—featuring the Pontifical Mass, Grand Parade, Opening Program, and the Inter-Town DLBC Competition. Let us come together in faith, culture, and celebration in honor of Señor Sto. Niño. Viva Señor Sto. Niño! 🙏✨</p>
+                <span class="news-date">Jan 15, 2026</span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- EMERGENCY HOTLINE -->
+<section class="emergency-section scroll-animate">
+    <a href="https://www.facebook.com/profile.php?id=100064524829094" target="_blank" class="emergency-card">
+        <img src="assets/emergency/emergency.png" alt="Emergency Hotline" class="emergency-image">
+        <div class="emergency-content">
+            <h2>Emergency Hotline</h2>
+            <p>If you are in need of urgent assistance, please contact our emergency services immediately.</p>
+            <p><strong>Hotline Numbers:</strong></p>
+            <ul>
+                <li>🚑 MDRRMO: 09163952414 (Globe/TM)</li>
+                <li>🚒 BFP: 09125711407 (Smart/TNT) | 09261954414 (Globe/TM)</li>
+                <li>🚔 PNP: 09985986485 (Smart/TNT)</li>
+            </ul>
+        </div>
+    </a>
+</section>
+
+<button id="backToTop" title="Go to top">↑ Top</button>
+<!-- SCROLL SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll('.scroll-animate');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            } else {
+                entry.target.classList.remove('show');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+});
+
+const backToTopBtn = document.getElementById("backToTop");
+
+// Show button when scrolling down
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 250) {
+        backToTopBtn.classList.add("show");
+    } else {
+        backToTopBtn.classList.remove("show");
+    }
+});
+
+// Smooth scroll to top
+backToTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const slides = document.querySelectorAll(".hero-slide");
+    const heroText = document.querySelector(".hero-text");
+    let currentSlide = 0;
+
+    function changeSlide() {
+
+        // Fade out text before slide change ONLY if going to next slide
+        if(currentSlide === 0) {
+            heroText.classList.add("fade-out");
+        }
+
+        setTimeout(() => {
+
+            slides.forEach(slide => slide.classList.remove("active"));
+
+            currentSlide++;
+            if(currentSlide >= slides.length) {
+                currentSlide = 0;
+                // Fade text back in after cycling back to first image
+                heroText.classList.remove("fade-out");
+            }
+
+            slides[currentSlide].classList.add("active");
+
+        }, 800);
+
+    }
+
+    setInterval(changeSlide, 5000);
+});
+</script>
+
+<footer>
+    <div class="footer-container">
+        <!-- Left: Logo + Republic -->
+        <div class="footer-left">
+            <a href="https://www.gov.ph" target="_blank">
+                <img src="assets/images/logo.png" alt="Republic Logo">
+            </a>
+            <p>Republic of the Philippines</p>
+        </div>
+
+        <!-- Center: About GOVPH -->
+        <div class="footer-center">
+            <h4>About GOVPH</h4>
+            <br>
+            <p>Official website of the Philippine government providing information and services to citizens.</p>
+        </div>
+
+        <!-- Right: Government Links -->
+        <div class="footer-right">
+            <h4>Government Links</h4>
+            <br>
+
+            <ul>
+                <li><a href="https://www.op.gov.ph" target="_blank">Office of the President</a></li>
+                <li><a href="https://www.ovp.gov.ph" target="_blank">Office of the Vice President</a></li>
+                <li><a href="https://www.senate.gov.ph" target="_blank">Senate of the Philippines</a></li>
+                <li><a href="https://www.congress.gov.ph" target="_blank">House of Representatives</a></li>
+                <li><a href="https://www.sc.judiciary.gov.ph" target="_blank">Supreme Court</a></li>
+                <li><a href="https://www.oca.judiciary.gov.ph" target="_blank">Court of Appeals</a></li>
+                <li><a href="https://sb.judiciary.gov.ph" target="_blank">Sandiganbayan</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 All Rights Reserved.</p>
+</footer>
+
+<style>
+/* =============================== */
+/* FOOTER WITH DARK OVERLAY, COPYRIGHT CENTERED, ALL CAPS */
+/* =============================== */
+footer {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    padding: 40px 20px 60px 20px; /* extra bottom padding for copyright */
+    color: white;
+    overflow: hidden;
+    text-transform: uppercase; /* make all text uppercase */
+}
+
+/* Gradient background */
+footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #2455BF, #28989C, #00BFE6);
+    z-index: 1;
+}
+
+/* Dark overlay on top of gradient */
+footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* Footer content above overlay */
+.footer-container {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px;
+    text-transform: uppercase; /* ensure all container text is uppercase */
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    flex: 1 1 250px;
+}
+
+.footer-left img {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    transition: transform 0.3s ease;
+}
+
+.footer-left img:hover {
+    transform: scale(1.05);
+}
+
+.footer-left p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.footer-center p {
+    max-width: 300px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-right ul li {
+    margin-bottom: 8px;
+}
+
+.footer-right ul li a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.5s ease;
+    font-weight: 500;
+}
+
+/* Underline animation on hover (gold accent) */
+.footer-right ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: -3px;
+    left: 0;
+    background-color: #caa54b;
+    transition: width 0.5s ease;
+}
+
+.footer-right ul li a:hover::after,
+.footer-right ul li a.active::after {
+    width: 100%;
+}
+
+/* Footer bottom copyright - centered */
+.footer-bottom {
+    position: relative;
+    z-index: 3;
+    margin-top: 30px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    text-align: center;
+    text-transform: uppercase; /* make copyright uppercase */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-center p {
+        max-width: 90%;
+    }
+
+    .footer-left img {
+        width: 150px;
+        margin-bottom: 8px;
+    }
+
+    .footer-left p {
+        font-size: 0.9rem;
+    }
+}
+</style>
+
+</html>

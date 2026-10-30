@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LGU Bato, Leyte | Official Website Of Government Of Bato</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" type="image/png" href="assets/images/seal2.png">
+
+<style>
+/* ===============================
+   NAVBAR
+================================ */
+.main-navbar {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background-color: #1b2a4e;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    position: relative;
+    z-index: 10;
+}
+
+.main-navbar i {
+    margin-right: 6px;
+    font-size: 0.9rem;
+}
+
+.main-navbar a,
+.main-navbar .dropbtn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 16px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* LEFT → RIGHT UNDERLINE (original animation) */
+.main-navbar a::after,
+.main-navbar .dropbtn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+}
+
+.main-navbar a:hover::after,
+.main-navbar a.active::after,
+.main-navbar .dropbtn:hover::after {
+    transform: scaleX(1);
+}
+
+/* DIVIDERS */
+.main-navbar > a:not(:last-child),
+.main-navbar > .dropdown:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ===============================
+   DROPDOWN
+================================ */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1b2a4e;
+    min-width: 220px;
+    display: none;
+    flex-direction: column;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 9999;
+}
+
+.dropdown-menu a {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    border-right: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #002f6c;
+}
+
+/* Hover on desktop */
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+/* ===============================
+   MOBILE STYLES
+================================ */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+@media (max-width: 992px) { /* tablets and below */
+    .header-container.new-header-layout {
+        flex-direction: column; /* stack logo and text */
+        align-items: center;    /* center everything horizontally */
+        text-align: center;     /* center text inside header-text */
+    }
+
+    .header-text {
+        margin: 10px 0 0 0;     /* spacing from logo */
+    }
+
+    .header-logo {
+        max-width: 120px;       /* adjust logo size on smaller screens */
+        height: auto;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-navbar a,
+    .main-navbar .dropdown {
+        display: none;
+        width: 100%;
+    }
+
+    .main-navbar.active a,
+    .main-navbar.active .dropdown {
+        display: block;
+    }
+
+    .dropdown-menu {
+        position: static;
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        transition: max-height 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-menu {
+        max-height: 500px; /* adjust if many links */
+    }
+
+        .header-text {
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Optional: add spacing between elements */
+    .header-text .country,
+    .header-text .unit,
+    .header-text h1,
+    .header-text .pst-time {
+        display: block;
+        margin: 4px 0; /* adjust spacing as needed */
+    }
+
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="header-container new-header-layout">
+        <img src="assets/images/seal2.png" alt="LGU Bato Logo" class="header-logo">
+        <div class="header-text">
+            <span class="country">Republic of the Philippines</span>
+            <h1>LGU BATO, LEYTE</h1>
+            <span class="unit">Local Government Unit of Bato, Leyte</span>
+            <div class="pst-time" id="pstTime"></div>
+        </div>
+    </div>
+</header>
+
+
+<nav class="main-navbar">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a href="https://www.gov.ph" target="_blank">
+        <i class="fa-solid fa-landmark"></i> GOVPH
+    </a>
+
+    <a href="index.html" class="">
+        <i class="fa-solid fa-house"></i> HOME
+    </a>
+
+    <!-- GOVERNMENT DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-building-columns"></i> GOVERNMENT &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="executive.html" class="">
+                <i class="fa-solid fa-user-tie"></i> Executive Department<i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="legislative.html" class="">
+                <i class="fa-solid fa-scale-balanced"></i> Legislative Department<i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="barangay.html" class="">
+                <i class="fa-solid fa-people-group"></i> Barangay
+            </a>
+        </div>
+    </div>
+
+    <!-- TOURISM DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-umbrella-beach"></i> TOURISM &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="batobalani.html" class="">
+                <i class="fa-solid fa-umbrella-beach"></i> Batobalani
+            </a>
+        </div>
+    </div>
+
+    <!-- TRANSPARENCY DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-file-lines"></i> TRANSPARENCY &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="full-disclosure.html" class="">
+                <i class="fa-solid fa-shield-halved"></i> Full Disclosure Policy
+            </a>
+            <a href="executive-orders.html" class="active">
+                <i class="fa-solid fa-file-circle-check"></i> Executive Order
+            </a>
+            <a href="ordinance.html" class="">
+                <i class="fa-solid fa-scroll"></i> Ordinance
+            </a>
+            <a href="resolutions.html" class="">
+                <i class="fa-solid fa-file-signature"></i> Resolutions
+            </a>
+            <a href="citizens-charter.html" class="">
+                <i class="fa-solid fa-book-open"></i> Citizens Charter
+            </a>
+            <a href="transparency-seal.html" class="">
+                <i class="fa-solid fa-shield-halved"></i> Transparency Seal
+            </a>
+        </div>
+    </div>
+
+    <!-- BAC DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-gavel"></i> BAC &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="invite-bid.html" class="">
+                <i class="fa-solid fa-envelope-open-text"></i> Invitation to BID
+            </a>
+            <a href="documentation.html" class="">
+                <i class="fa-solid fa-file-contract"></i> Procurement Documentation<i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="reports.html" class="">
+                <i class="fa-solid fa-chart-line"></i> Procurement Reports<i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- OTHER LINKS DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">
+            <i class="fa-solid fa-link"></i> OTHER LINKS &#x25BE;
+        </a>
+        <div class="dropdown-menu">
+            <a href="downloadable-forms.html" class="">
+                <i class="fa-solid fa-file-arrow-down"></i> Downloadable Forms
+            </a>
+            <a href="bpls.html" class="">
+                <i class="fa-solid fa-briefcase"></i> BPLS
+            </a>
+            <a href="bpas.html" class="">
+                <i class="fa-solid fa-building"></i> BPAS
+            </a>
+            <a href="gpmts.html" class="">
+                <i class="fa-solid fa-boxes-packing"></i> GPMTS
+            </a>
+        </div>
+    </div>
+
+    <a href="about.html" class="">
+        <i class="fa-solid fa-circle-info"></i> ABOUT US
+    </a>
+</nav>
+
+<main class="container">
+
+<script>
+// Philippine Standard Time
+function updatePST() {
+    const options = {
+        timeZone: 'Asia/Manila',
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    };
+    document.getElementById('pstTime').innerHTML =
+        'Philippine Standard Time: ' +
+        new Intl.DateTimeFormat('en-PH', options).format(new Date());
+}
+updatePST();
+setInterval(updatePST, 1000);
+
+// MOBILE MENU TOGGLE
+const menuToggle = document.getElementById('menuToggle');
+const navbar = document.querySelector('.main-navbar');
+menuToggle.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+});
+
+// MOBILE DROPDOWN TOGGLE WITH SLIDE & SINGLE OPEN
+const dropdowns = document.querySelectorAll('.dropdown');
+dropdowns.forEach(drop => {
+    const dropbtn = drop.querySelector('.dropbtn');
+    dropbtn.addEventListener('click', e => {
+        if(window.innerWidth <= 768){
+            e.preventDefault();
+            drop.classList.toggle('active');
+            dropdowns.forEach(other => {
+                if(other !== drop){
+                    other.classList.remove('active');
+                }
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
+<style>
+/* =======================
+   Page Colors and Typography
+======================= */
+body {
+    background-color: #f5f0e6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1b2a4e;
+}
+
+.mayor-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* =======================
+   Title + Search Bar
+======================= */
+.title-search-container {
+    max-width: 1200px;
+    margin: 30px auto 20px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#searchInput {
+    padding: 10px 14px;
+    border: 2px solid #1b2a4e;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 320px;
+    max-width: 100%;
+    outline: none;
+}
+
+#searchInput:focus {
+    border-color: #0d1b34;
+    box-shadow: 0 0 5px rgba(27,42,78,0.3);
+}
+
+/* =======================
+   Content Section
+======================= */
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* =======================
+   Table Styling
+======================= */
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table th, table td {
+    border: 1px solid #1b2a4e;
+    padding: 12px 10px;
+    text-align: left;
+    font-size: 16px;
+}
+
+table th {
+    background-color: #1b2a4e;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #e6e0d6;
+}
+
+table a {
+    color: #1b2a4e;
+    text-decoration: none;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+/* =======================
+   BACK TO TOP BUTTON
+======================= */
+#backToTop {
+    position: fixed;
+    top: -70px; /* hidden above screen */
+    right: 20px;
+    z-index: 999;
+    background-color: #1b2a4e;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+
+/* SHOW ANIMATION */
+#backToTop.show {
+    top: 20px;
+    opacity: 1;
+}
+
+/* Hover animation */
+#backToTop:hover {
+    background-color: #ffffff;
+    color: #1b2a4e;
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* =======================
+   Responsive
+======================= */
+@media (max-width: 768px) {
+    .mayor-title { font-size: 32px; }
+    .content-section { font-size: 16px; }
+
+    .title-search-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+
+    table th, table td {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .mayor-title { font-size: 28px; }
+    .content-section { font-size: 14px; padding: 0 10px; }
+
+    table th, table td {
+        font-size: 12px;
+        padding: 8px 6px;
+    }
+
+}
+
+</style>
+
+<section>
+
+    <!-- TITLE + SEARCH -->
+    <div class="title-search-container">
+        <h2 class="mayor-title">
+            <i class="fa-solid fa-file-circle-check"></i> Executive Orders
+        </h2>
+
+        <input type="text" id="searchInput"
+            placeholder="Search EO number, title, or date...">
+    </div>
+
+    <div class="content-section">
+        <p>
+            List of recent executive orders issued by the municipality. Each EO
+            provides guidelines and instructions for public administration,
+            health, safety, and local development.
+        </p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr style="text-transform: uppercase;">
+                        <th>EO Number</th>
+                        <th style="text-align:center;">Title</th>
+                        <th>Date Issued</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+
+                <tbody id="eoTable">
+                    <tr>
+                        <td>EO No. 0012-2026</td>
+                        <td>REORGANIZATION OF THE MUNICIPAL SOLID WASTE MANAGEMENT BOARD (MSWMB)</td>
+                        <td>Feb 19, 2026</td>
+                        <td><a href="assets/eo/2026/REORGANIZATIONOFTHEMUNICIPALSOLIDWASTEMANAGEMENTBOARD.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0013-2026</td>
+                        <td>REORGANIZING THE MUNICIPAL EPIDEMIOLOGY AND SURVEILLANCE UNIT</td>
+                        <td>Feb 16, 2026</td>
+                        <td><a href="assets/eo/2026/REORGANIZINGTHEMUNICIPALEPIDEMIOLOGYANDSURVEILLANCEUNIT.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0011-2026</td>
+                        <td>RECONSTITUTING THE MUNICIPAL PROJECT MONITORING COMMITTEE</td>
+                        <td>Feb 16, 2026</td>
+                        <td><a href="assets/eo/2026/RECONSTITUTINGTHEMUNICIPALPROJECTMONITORINGCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0010-2026</td>
+                        <td>CREATING THE PARK AND GREEN SPACE MANAGEMENT COMMITTEE</td>
+                        <td>Feb 13, 2026</td>
+                        <td><a href="assets/eo/2026/CREATINGTHEPARKANDGREENSPACEMANAGEMENTCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0009-2026</td>
+                        <td>AUTHORIZING THE CONDITIONAL RELEASE OF BUSINESS PERMITS</td>
+                        <td>Feb 11, 2026</td>
+                        <td><a href="assets/eo/2026/AUTHORIZINGTHECONDITIONALRELEASEOFBUSINESSPERMITS.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0008-2026</td>
+                        <td>CREATING THE DENGUE TASK FORCE AND ESTABLISHING GUIDELINES FOR DENGUE PREVENTION</td>
+                        <td>Feb 10, 2026</td>
+                        <td><a href="assets/eo/2026/CREATINGTHEDENGUETASKFORCEANDESTABLISHINGGUIDELINESFORDENGUEPREVENTION.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0007-2026</td>
+                        <td>SUSPENSION OF CLASSES</td>
+                        <td>Feb 10, 2026</td>
+                        <td><a href="assets/eo/2026/SUSPENSIONOFCLASSES.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0006-2026</td>
+                        <td>REORGANIZING DRINKING WATER QUALITY</td>
+                        <td>Feb 9, 2026</td>
+                        <td><a href="assets/eo/2026/REORGANIZINGDRINKINGWATERQUALITY.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0005-2026</td>
+                        <td>SUSPENSION OF CLASSES DUE TO TYPHOON BASYANG</td>
+                        <td>Feb 5, 2026</td>
+                        <td><a href="assets/eo/2026/SUSPENSIONOFCLASSESDUETOTYPHOONBASYANG.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0004-2026</td>
+                        <td>REORGANIZING GRIEVANCE COMMITTEE</td>
+                        <td>Jan 29, 2026</td>
+                        <td><a href="assets/eo/2026/REORGANIZINGGRIEVANCECOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0003-2026</td>
+                        <td>SUSPENSION OF CLASSES AND WORK AFTER FIESTA</td>
+                        <td>Jan 25, 2026</td>
+                        <td><a href="assets/eo/2026/SUSPENSIONOFCLASSESANDWORKAFTERFIESTA.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0002-2026</td>
+                        <td>MUNICIPAL AWARDS COMMITTEE</td>
+                        <td>Jan 19, 2026</td>
+                        <td><a href="assets/eo/2026/MUNICIPALAWARDSCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+    
+                    <tr>
+                        <td>EO No. 0001-2026</td>
+                        <td>OPENING SALVO</td>
+                        <td>Jan 15, 2026</td>
+                        <td><a href="assets/eo/2026/OPENINGSALVO.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                                        <tr>
+                        <td>EO No. 0041-2025</td>
+                        <td>PLEB</td>
+                        <td>Dec 9, 2025</td>
+                        <td><a href="assets/eo/2025/PLEB.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0040-2025</td>
+                        <td>MUNICIPAL AWARDS COMMITTEE</td>
+                        <td>Dec 6, 2025</td>
+                        <td><a href="assets/eo/2025/MUNICIPALAWARDSCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0040A-2025</td>
+                        <td>REORGANIZING LCAC</td>
+                        <td>Dec 6, 2025</td>
+                        <td><a href="assets/eo/2025/REORGANIZINGLCAC.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0034-2025</td>
+                        <td>TD WILMA</td>
+                        <td>Dec 4, 2025</td>
+                        <td><a href="assets/eo/2025/TDWILMA.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0033-2025</td>
+                        <td>TD VERBENA</td>
+                        <td>Nov 24, 2025</td>
+                        <td><a href="assets/eo/2025/VERBENA.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0031-2025</td>
+                        <td>ORGANIZATION OF THE MUNCIIPAL HEALTH EMERGENCY RESPONSE TEAM</td>
+                        <td>Nov 24, 2025</td>
+                        <td><a href="assets/eo/2025/ORGANIZATIONOFTHEMUNCIIPALHEALTHEMERGENCYRESPONSETEAM.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0030S-2025</td>
+                        <td>SPECIAL DRUG EDUCATION CENTER AND TEAM</td>
+                        <td>Nov 28, 2025</td>
+                        <td><a href="assets/eo/2025/SPECIALDRUGEDUCATIONCENTERANDTEAM.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0030-2025</td>
+                        <td>CREATING THE MUNICIPAL POVERTY REDUCTION ACTION COMMITTEE (IMPRAC) OF BATO, LEYTE FOR THE FORMULATION AND IMPLEMENTATION OF THE MUNICIPAL</td>
+                        <td>Nov 12, 2025</td>
+                        <td><a href="assets/eo/2025/CREATINGTHEMUNICIPALPOVERTYREDUCTIONACTIONCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0029-2025</td>
+                        <td>ESTABLISHING THE CIVIL SOCIETY ORGANIZATION DESK AND DESIGNATING CSO DESK OFFICER</td>
+                        <td>Nov 6, 2025</td>
+                        <td><a href="assets/eo/2025/ESTABLISHINGTHECIVILSOCIETYORGANIZATIONDESK.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0026-2025</td>
+                        <td>INSTITUTIONALIZING A DRUG FREE WORKPLACE IN THE LOCAL GOVERNMENT UNIT OF BATO, LEYTE</td>
+                        <td>Dec 4, 2025</td>
+                        <td><a href="assets/eo/2025/INSTITUTIONALIZINGADRUGFREEWORKPLACE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0024-2025</td>
+                        <td>TEACHER'S DAY</td>
+                        <td>Dec 4, 2025</td>
+                        <td><a href="assets/eo/2025/TEACHERSDAY.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0023-2025</td>
+                        <td>MUNICIPAL HEALTH BOARD</td>
+                        <td>Oct 3, 2025</td>
+                        <td><a href="assets/eo/2025/MUNICIPALHEALTHBOARD.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0022A-2025</td>
+                        <td>SPECIAL DRUG EDUCATION CENTER AND TEAM</td>
+                        <td>Oct 3, 2025</td>
+                        <td><a href="assets/eo/2025/SPECIALDRUGEDUCATIONCENTERANDTEAM1.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                                        <tr>
+                        <td>EO No. 0022-2025</td>
+                        <td>MUNICIPAL PEACE AND ORDER COUNCIL</td>
+                        <td>Oct 3, 2025</td>
+                        <td><a href="assets/eo/2025/MUNICIPALPEACEANDORDERCOUNCIL.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0021-2025</td>
+                        <td>REORGANIZING THE PUBLIC FINANCIAL MANAGEMENT TEAM</td>
+                        <td>Oct 3, 2025</td>
+                        <td><a href="assets/eo/2025/REORGANIZINGTHEPUBLICFINANCIALMANAGEMENTTEAM.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0020B-2025</td>
+                        <td>DECLARING THE DEACTIVATION OF THE MUNICIPAL EMERGENCY OPERATIONS CENTER (EOC) FOLLOWING THE PASSAGE OF SEVERE TROPICAL STORM OPONG</td>
+                        <td>Oct 3, 2025</td>
+                        <td><a href="assets/eo/2025/DECLARINGTHEDEACTIVATIONOFMUNICIPALEMERGENCYOPERATIONSCENTER.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0020A-2025</td>
+                        <td>EXTENDING THE ACTIVATION OF THE OPERATION CENTER INTO EMERGENCY OPERATION CENTER IN THE MUNICIPALITY OF BATO, LEYTE UNTIL SEPT. 26, 2025</td>
+                        <td>Oct3, 2025</td>
+                        <td><a href="assets/eo/2025/EXTENDINGTHEACTIVATIONOFOPERATIONCENTERINTOEMERGENCYOPERATIONCENTER.docx" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0020-2025</td>
+                        <td>SUSPENSION OF WORK AND CLASSES</td>
+                        <td>Sept 25, 2025</td>
+                        <td><a href="assets/eo/2025/SUSPENSIONOFWORKANDCLASSES1.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0019-2025</td>
+                        <td>LOCAL SCHOOL BOARD</td>
+                        <td>Aug 6, 2025</td>
+                        <td><a href="assets/eo/2025/LOCALSCHOOLBOARD.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0018-2025</td>
+                        <td>DESIGNATING PWD FOCAL PERSON</td>
+                        <td>Aug 6, 2025</td>
+                        <td><a href="assets/eo/2025/DESIGNATINGPWDFOCALPERSON.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0017-2025</td>
+                        <td>DESIGNATING ARSENIO G. GERTOS JR. AS THE MUNICIPAL STATISTICIAN</td>
+                        <td>Aug 6, 2025</td>
+                        <td><a href="assets/eo/2025/DESIGNATINGARSENIOGGERTOSJRASMUNICIPALSTATISTICIAN.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0016-2025</td>
+                        <td>DESIGNATING RIZALINA M. BUZON AS DATA PROTECTION OFFICER</td>
+                        <td>Aug 6, 2025</td>
+                        <td><a href="assets/eo/2025/DESIGNATINGRIZALINAMBUZONASDATAPROTECTIONOFFICER.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0015-2025</td>
+                        <td>LYDC</td>
+                        <td>Aug 6, 2025</td>
+                        <td><a href="assets/eo/2025/LOCALYOUTHDEVELOPMENTCOUNCIL.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0014-2025</td>
+                        <td>REORGANIZING THE MUNICIPAL DRINKING WATER QUALITY MONITORING COMMITTEE</td>
+                        <td>Aug 5, 2025</td>
+                        <td><a href="assets/eo/2025/REORGANIZINGTHEMUNICIPALDRINKINGWATERQUALITYMONITORINGCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0013-2025</td>
+                        <td>LOCAL WATER QUALITY MONITORING UNIT</td>
+                        <td>Aug 5, 2025</td>
+                        <td><a href="assets/eo/2025/LOCALWATERQUALITYMONITORINGUNIT.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0012-2025</td>
+                        <td>LOCAL WETLANDS MANAGEMENT COUNCIL</td>
+                        <td>Aug 5, 2025</td>
+                        <td><a href="assets/eo/2025/LOCALWETLANDSMANAGEMENTCOUNCIL.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0011-2025</td>
+                        <td>WILDLIFE MONITORING AND ENFORCEMENT TASK FORCE</td>
+                        <td>Aug 5, 2025</td>
+                        <td><a href="assets/eo/2025/WILDLIFEMONITORINGANDENFORCEMENTTASKFORCE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0010-2025</td>
+                        <td>SOLID WASTE MANAGEMENT BOARD</td>
+                        <td>Aug 5, 2025</td>
+                        <td><a href="assets/eo/2025/SOLIDWASTEMANAGEMENTBOARD.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0009-2025</td>
+                        <td>CREATING THE MUNICIPAL LITERACY COUNCIL</td>
+                        <td>July 25, 2025</td>
+                        <td><a href="assets/eo/2025/CREATINGTHEMUNICIPALLITERACYCOUNCIL.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0008-2025</td>
+                        <td>CLASS SUSPENSION 17 JULY 2025 HEAVY RAINS</td>
+                        <td>July 17, 2025</td>
+                        <td><a href="assets/eo/2025/CLASS_SUSPENSION_17_JULY_2025_HEAVY_RAINS.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0007-2025</td>
+                        <td>DECLARING THE SUSPENSION OF OFFICE WORK AND CLASSES - OPENING SALVO</td>
+                        <td>May 2, 2025</td>
+                        <td><a href="assets/eo/2025/DECLARINGTHESUSPENSIONOFOFFICEWORKANDCLASSESOPENINGSALVO.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0006-2025</td>
+                        <td>REORGANIZATION OF THE HRMPSB</td>
+                        <td>April 2, 2025</td>
+                        <td><a href="assets/eo/2025/REORGANIZATIONOFHRMPSB.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0005-2025</td>
+                        <td>RECONSTITUTING BAC</td>
+                        <td>July 1, 2025</td>
+                        <td><a href="assets/eo/2025/RECONSTITUTINGBAC.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0004-2025</td>
+                        <td>INVENTORY COMMITTEE</td>
+                        <td>July 1, 2025</td>
+                        <td><a href="assets/eo/2025/INVENTORYCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0003-2025</td>
+                        <td>AN ORDER RECONSTITUTING THE COMPOSITION OF MUNICIPAL NUTRITION COMMITTEE</td>
+                        <td>July 1, 2025</td>
+                        <td><a href="assets/eo/2025/ANORDERRECONSTITUTINGTHECOMPOSITIONOFMUNICIPALNUTRITIONCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0002-2025</td>
+                        <td>REORGANIZATION OF THE MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT COUNCIL</td>
+                        <td>Oct 3, 2025</td>
+                        <td><a href="assets/eo/2025/REORGANIZATIONOFMUNICIPALDISASTERSEVERITYANDMANAGEMENTCOUNCIL.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0001-2025</td>
+                        <td>LOCAL YOUTH DEVELOPMENT OFFICER</td>
+                        <td>July 1, 2025</td>
+                        <td><a href="assets/eo/2025/LOCALYOUTHDEVELOPMENTOFFICER.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0007S-2025</td>
+                        <td>DOH-HRH SAFETY AND SECURITY COMMITTEE</td>
+                        <td>May 2, 2025</td>
+                        <td><a href="assets/eo/2025/DOH-HRHSAFETYANDSECURITYCOMMITTEE.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0006S-2025</td>
+                        <td>LOCAL GOVERNANCE TRANSITION TEAM</td>
+                        <td>April 2, 2025</td>
+                        <td><a href="assets/eo/2025/LOCALGOVERNANCETRANSITIONTEAM.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0005S-2025</td>
+                        <td>PUROKALUSUGAN HEALTH TEAM</td>
+                        <td>March 19, 2025</td>
+                        <td><a href="assets/eo/2025/PUROKALUSUGANHEALTHTEAM.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0004S-2025</td>
+                        <td>MUNICIPAL AWARDS COMMITTEE</td>
+                        <td>Feb 12, 2025</td>
+                        <td><a href="assets/eo/2025/MUNICIPALAWARDSCOMMITTEE1.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0003S-2025</td>
+                        <td>MUNICIPAL IMPLEMENTING TEAM FOR THE RESPONSIBLE PARENTHOOD AND REPRODUCTIVE HEALTH</td>
+                        <td>Feb 12, 2025</td>
+                        <td><a href="assets/eo/2025/MUNICIPALIMPLEMENTINGTEAMFORRESPONSIBLEPARENTHOODANDREPRODUCTIVEHEALTH.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0002S-2025</td>
+                        <td> SUSPENSION OF WORK AND CLASSES</td>
+                        <td>Jan 23, 2025</td>
+                        <td><a href="assets/eo/2025/SUSPENSIONOFWORKANDCLASSES.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>EO No. 0001S-2025</td>
+                        <td>REORGANIZATION OF THE MUNICIPAL HIV AIDS COUNCIL</td>
+                        <td>Jan 13, 2025</td>
+                        <td><a href="assets/eo/2025/REORGANIZATIONOFTHEMUNICIPALSOLIDWASTEMANAGEMENTBOARD.pdf" download>DOWNLOAD</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<button id="backToTop" title="Go to top">↑ Top</button>
+<!-- SEARCH SCRIPT -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    let filter = this.value.toLowerCase();  
+    let rows = document.querySelectorAll("#eoTable tr");
+
+    rows.forEach(function(row) {
+        let text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+    });
+});
+
+const backToTopBtn = document.getElementById("backToTop");
+
+// Show button when scrolling down
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 250) {
+        backToTopBtn.classList.add("show");
+    } else {
+        backToTopBtn.classList.remove("show");
+    }
+});
+
+// Smooth scroll to top
+backToTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+<footer>
+    <div class="footer-container">
+        <!-- Left: Logo + Republic -->
+        <div class="footer-left">
+            <a href="https://www.gov.ph" target="_blank">
+                <img src="assets/images/logo.png" alt="Republic Logo">
+            </a>
+            <p>Republic of the Philippines</p>
+        </div>
+
+        <!-- Center: About GOVPH -->
+        <div class="footer-center">
+            <h4>About GOVPH</h4>
+            <br>
+            <p>Official website of the Philippine government providing information and services to citizens.</p>
+        </div>
+
+        <!-- Right: Government Links -->
+        <div class="footer-right">
+            <h4>Government Links</h4>
+            <br>
+
+            <ul>
+                <li><a href="https://www.op.gov.ph" target="_blank">Office of the President</a></li>
+                <li><a href="https://www.ovp.gov.ph" target="_blank">Office of the Vice President</a></li>
+                <li><a href="https://www.senate.gov.ph" target="_blank">Senate of the Philippines</a></li>
+                <li><a href="https://www.congress.gov.ph" target="_blank">House of Representatives</a></li>
+                <li><a href="https://www.sc.judiciary.gov.ph" target="_blank">Supreme Court</a></li>
+                <li><a href="https://www.oca.judiciary.gov.ph" target="_blank">Court of Appeals</a></li>
+                <li><a href="https://sb.judiciary.gov.ph" target="_blank">Sandiganbayan</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 All Rights Reserved.</p>
+</footer>
+
+<style>
+/* =============================== */
+/* FOOTER WITH DARK OVERLAY, COPYRIGHT CENTERED, ALL CAPS */
+/* =============================== */
+footer {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    padding: 40px 20px 60px 20px; /* extra bottom padding for copyright */
+    color: white;
+    overflow: hidden;
+    text-transform: uppercase; /* make all text uppercase */
+}
+
+/* Gradient background */
+footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #2455BF, #28989C, #00BFE6);
+    z-index: 1;
+}
+
+/* Dark overlay on top of gradient */
+footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* Footer content above overlay */
+.footer-container {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px;
+    text-transform: uppercase; /* ensure all container text is uppercase */
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    flex: 1 1 250px;
+}
+
+.footer-left img {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    transition: transform 0.3s ease;
+}
+
+.footer-left img:hover {
+    transform: scale(1.05);
+}
+
+.footer-left p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.footer-center p {
+    max-width: 300px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-right ul li {
+    margin-bottom: 8px;
+}
+
+.footer-right ul li a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.5s ease;
+    font-weight: 500;
+}
+
+/* Underline animation on hover (gold accent) */
+.footer-right ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: -3px;
+    left: 0;
+    background-color: #caa54b;
+    transition: width 0.5s ease;
+}
+
+.footer-right ul li a:hover::after,
+.footer-right ul li a.active::after {
+    width: 100%;
+}
+
+/* Footer bottom copyright - centered */
+.footer-bottom {
+    position: relative;
+    z-index: 3;
+    margin-top: 30px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    text-align: center;
+    text-transform: uppercase; /* make copyright uppercase */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-center p {
+        max-width: 90%;
+    }
+
+    .footer-left img {
+        width: 150px;
+        margin-bottom: 8px;
+    }
+
+    .footer-left p {
+        font-size: 0.9rem;
+    }
+}
+</style>
